@@ -1,5 +1,4 @@
 from sklearn import model_selection
-
 from src import utils
 from src.config import Config
 from src.dataset import (
@@ -14,10 +13,12 @@ from src.model import get_metrics, get_model, get_trainer
 
 def main() -> None:
     # Make metadata CSVs
+    print("Generating metadata...")
     utils.make_metadata_csv("train.bson")
-    utils.make_metadata_csv("test.bson")
+    # utils.make_metadata_csv("test.bson")
 
     # Go from per product to per image representation
+    print("Preprocessing dataset...")
     md = utils.metadata_product2img("train_metadata.csv")
 
     # Encode labels
@@ -48,8 +49,9 @@ def main() -> None:
     )
 
     # Init model and trainer
+    print("Creating model...")
     model = get_model(cat2idx=cat2idx, idx2cat=idx2cat)
-    
+
     trainer = get_trainer(
         model=model,
         output_dir="./vit-base-cdiscount",
