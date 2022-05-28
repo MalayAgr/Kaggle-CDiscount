@@ -5,8 +5,12 @@ import torch
 from datasets import load_metric
 from torch import nn
 from torch.utils import data
-from transformers import (Trainer, TrainingArguments, ViTFeatureExtractor,
-                          ViTForImageClassification, load_metric)
+from transformers import (
+    Trainer,
+    TrainingArguments,
+    ViTFeatureExtractor,
+    ViTForImageClassification,
+)
 
 from .config import Config
 from .dataset import SampleType

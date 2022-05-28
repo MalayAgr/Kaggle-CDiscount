@@ -9,7 +9,7 @@ import torch
 from PIL import Image
 from transformers import ViTFeatureExtractor
 
-from src.config import Config
+from .config import Config
 
 SampleType = dict[str, torch.Tensor | int]
 

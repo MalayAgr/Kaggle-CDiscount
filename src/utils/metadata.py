@@ -4,7 +4,7 @@ import os
 
 import bson
 import pandas as pd
-import tqdm
+from tqdm import tqdm
 
 from ..config import Config
 
@@ -77,7 +77,7 @@ def make_metadata_csv(
 
     if os.path.exists(dest):
         overwrite = input(
-            "This file already exists. Do you wish to overwrite it? [yY|nN] "
+            f"The file {dest} already exists. Do you wish to overwrite it? [yY|nN] "
         )
 
         if overwrite not in ("y", "Y"):
