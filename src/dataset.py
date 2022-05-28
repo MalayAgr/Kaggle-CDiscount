@@ -9,6 +9,8 @@ import torch
 from PIL import Image
 from transformers import ViTFeatureExtractor
 
+from src.config import Config
+
 SampleType = dict[str, torch.Tensor | int]
 
 
@@ -62,6 +64,10 @@ def collate_fn(examples: tuple[SampleType, ...]) -> SampleType:
     pixel_values = torch.stack([example["pixel_values"] for example in examples])
     labels = torch.tensor([example["label"] for example in examples], dtype=torch.long)
     return {"pixel_values": pixel_values, "labels": labels}
+
+
+def get_feature_extractor() -> ViTFeatureExtractor:
+    return ViTFeatureExtractor.from_pretrained(Config.PRETRAINED_MODEL)
 
 
 def resize_transform(feature_extractor: ViTFeatureExtractor) -> A.Resize:
